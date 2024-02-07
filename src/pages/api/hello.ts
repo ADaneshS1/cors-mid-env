@@ -1,13 +1,16 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+// pages/api/hello.ts
+import { NextApiRequest, NextApiResponse } from 'next';
+import Cors from 'cors';
+import middle from '../middleware/cors'
+// Inisialisasi middleware CORS menggunakan Cors dari paket cors
+const cors = middle(Cors({ 
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+}));
 
-type Data = {
-  name: string;
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  // Menggunakan middleware CORS di sini
+  await cors(req, res);
+
+  // Konten utama API
+  res.json({ message: 'Hello from the API!' });
 };
-
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>,
-) {
-  res.status(200).json({ name: "John Doe" });
-}
