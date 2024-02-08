@@ -9,3 +9,4 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 
 // Menggunakan middleware CORS untuk endpoint ini
 export default withCors(handler);
+ 

@@ -1,6 +1,7 @@
 // middleware/cors.ts
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import type Cors from 'cors';
+import Cors from 'cors';
+import next from 'next';
 
 // Inisialisasi middleware CORS dengan konfigurasi sesuai kebutuhan
 const corsOptions = {
@@ -14,7 +15,7 @@ const withCors = (apiHandler: NextApiHandler) => async (
   res: NextApiResponse
 ) => {
   // Mengaktifkan CORS untuk setiap permintaan
-  await corsMiddleware(req, res);
+  await corsMiddleware(req, res,next);
 
   // Menjalankan handler setelah middleware CORS
   return apiHandler(req, res);
